@@ -15,51 +15,33 @@ public class EmployeeWage {
 	 * UC1
 	 * EmployeeWage Present or Not
 	 */
+	static final int wagePerHour = 20;
+	static final int fullDayHour = 1;
+	static final int partTimeHour = 2;
+	static final int wagePerDay = 0;
+	static final int numOfWorkingDays=2;
+	
+	static int monthlyHrs=10;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Welcome to Employee Wage Computation Program");
-
-		Random random = new Random();
-
-		int wagePerHour = 20;
-		int fullDayHour = 8;
-		int partTimeHour = 4;
-		int wagePerDay = 0;
-		int monthlySalary = 0;
-		int monthlyHour = 0;
-		int days = 0;
-
-		while (monthlyHour != 100 || days != 20) {
-
-			days++;
-
-			int attendance = random.nextInt(3); // Generate 3 random number 0,1,2
-			wagePerDay = 0;
-			switch (attendance) {
-
-			case 0:
-				System.out.println("Employee Absent");
+		int empHrs =0, totalemprs = 0, totalWorkingDays=0;	
+		while(totalemprs <= monthlyHrs && totalWorkingDays < numOfWorkingDays ) {
+			totalWorkingDays++;
+			int empCheck = (int) Math.floor(Math.random() *10) % 3;
+			switch(empCheck) {
+			case partTimeHour:
+				empHrs=4;
 				break;
-
-			case 1:
-				System.out.println("Employee Part Time Present");
-				wagePerDay = partTimeHour * wagePerHour;
-				monthlyHour = monthlyHour + partTimeHour;
+			case fullDayHour:
+				empHrs=8;
 				break;
 			default:
-				System.out.println("Employee Full Day Present..");
-				wagePerDay = wagePerHour * fullDayHour;
-				monthlyHour = monthlyHour + fullDayHour;
-				break;
+				empHrs = 0;
 			}
-
-			monthlySalary = monthlySalary + wagePerDay;
-			System.out
-					.println("Day: " + days + " :MonthlyHours: " + monthlyHour + ": Monthly Salary: " + monthlySalary);
+			totalemprs +=empHrs;
+			System.out.println(totalWorkingDays + "emp hr:" +empHrs );
 		}
-
+		int totalEmpWage = totalemprs * wagePerHour;
+		System.out.println("TotalEmpWage:"+ totalEmpWage );
 	}
 }
-
-
-
