@@ -16,5 +16,6 @@ public interface InterfaceEmployeeWage {
 
 	public void calculateEmployeeWage();
 
+	public int getTotalWage(String company);
+
 }
-	

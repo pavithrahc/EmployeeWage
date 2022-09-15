@@ -13,31 +13,32 @@ public class CompanyEmployeeWage {
 
 	/**
 	 * @param args
-	 */public String company;
-		public int wagePerHour;
-		public int workingDay;
-		public int totalWorkHrs;
-		public int totalWage;
+	 */
+	public static final int IS_FULL_TIME = 1;
+	public static final int IS_PART_TIME = 2;
 
-		public ArrayList<Integer> empDailyWage = new ArrayList<Integer>();
+	public String company;
+	public int wagePerHour;
+	public int workingDay;
+	public int totalWorkHrs;
+	public int totalWage;
 
-		public CompanyEmployeeWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
-			this.company = company;
-			this.wagePerHour = wagePerHour;
-			this.workingDay = workingDay;
-			this.totalWorkHrs = totalWorkHrs;
-		}
+	public ArrayList<Integer> empDailyWage = new ArrayList<Integer>();
 
-		public void setTotalEmpWage(int totalWage) {
-			this.totalWage = totalWage;
-		}
-
-		@Override
-		public String toString() {
-			return "Total Emp Wage for " + company + " is :" + totalWage;
-
-		}
+	public CompanyEmployeeWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
+		this.company = company;
+		this.wagePerHour = wagePerHour;
+		this.workingDay = workingDay;
+		this.totalWorkHrs = totalWorkHrs;
 	}
-	
 
+	public void setTotalEmpWage(int totalWage) {
+		this.totalWage = totalWage;
+	}
 
+	@Override
+	public String toString() {
+		return "Total Emp Wage for " + company + " is :" + totalWage;
+
+	}
+}

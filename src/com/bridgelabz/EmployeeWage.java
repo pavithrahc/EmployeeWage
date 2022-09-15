@@ -22,10 +22,11 @@ public class EmployeeWage implements InterfaceEmployeeWage {
 	static final int EMP_PART_TIME = 2;
 
 	private ArrayList<CompanyEmployeeWage> companyEmployeeWageArrayList;
+	private Map<String, CompanyEmployeeWage> companyToEmployeeWageMap;
 
 	public EmployeeWage() {
-		
 		companyEmployeeWageArrayList = new ArrayList<CompanyEmployeeWage>();
+		companyToEmployeeWageMap = new HashMap<>();
 	}
 
 	public void addCompanyEmpWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
@@ -33,11 +34,11 @@ public class EmployeeWage implements InterfaceEmployeeWage {
 		CompanyEmployeeWage companyEmployeeWage = new CompanyEmployeeWage(company, wagePerHour, workingDay,
 				totalWorkHrs);
 		companyEmployeeWageArrayList.add(companyEmployeeWage);
+		companyToEmployeeWageMap.put(company, companyEmployeeWage);
 	}
 
 	public void calculateEmpWage() {
 		for (int i = 0; i < companyEmployeeWageArrayList.size(); i++) {
-		
 			CompanyEmployeeWage companyEmployeeWage = companyEmployeeWageArrayList.get(i);
 			companyEmployeeWage.setTotalEmpWage(this.calculateEmpWage(companyEmployeeWage));
 			System.out.println("Company Name :" + companyEmployeeWage.company);
@@ -46,10 +47,15 @@ public class EmployeeWage implements InterfaceEmployeeWage {
 		}
 	}
 
+	@Override
+	public int getTotalWage(String company) {
+		return companyToEmployeeWageMap.get(company).totalWage;
+	}
+
 	public void displayDailyWageForCompany(CompanyEmployeeWage companyEmployeeWage) {
 		for (int i = 0; i < companyEmployeeWage.empDailyWage.size(); i++) {
 			int day = i + 1;
-			System.out.println("Daily Wage For Day." + day + ":" + companyEmployeeWage.empDailyWage.get(i));
+			System.out.println("Daily Wage For Day" + day + ":" + companyEmployeeWage.empDailyWage.get(i));
 		}
 	}
 
@@ -75,6 +81,7 @@ public class EmployeeWage implements InterfaceEmployeeWage {
 				empWage = empWage + x;
 				totalWorkingHours = totalWorkingHours + 8;
 				System.out.println("Employee is present and the wage is : " + empWage);
+				System.out.println("Daily Wage For Day :" + x);
 				totalWorkingDays++;
 				break;
 
@@ -83,6 +90,7 @@ public class EmployeeWage implements InterfaceEmployeeWage {
 				empWage = empWage + x;
 				totalWorkingHours = totalWorkingHours + 4;
 				System.out.println("Employee is Part time present and the wage is : " + empWage);
+				System.out.println("Daily Wage For Day :" + x);
 				totalWorkingDays++;
 				break;
 
@@ -106,8 +114,12 @@ public class EmployeeWage implements InterfaceEmployeeWage {
 		EmployeeWage empWage = new EmployeeWage();
 		empWage.addCompanyEmpWage("BIG BASKET", 40, 22, 140);
 		empWage.addCompanyEmpWage("AMAZON", 90, 21, 222);
-		empWage.addCompanyEmpWage("WIPRO", 58, 22, 175);
+		empWage.addCompanyEmpWage("TARGET", 58, 22, 175);
 		empWage.calculateEmpWage();
+		System.out.println();
+		System.out.println("Total Wage for BIG BASKET:" + empWage.getTotalWage("BIG BASKET"));
+		System.out.println("Total Wage for AMAZON:" + empWage.getTotalWage("AMAZON"));
+		System.out.println("Total Wage for TARGET:" + empWage.getTotalWage("TARGET"));
 
 	}
 
