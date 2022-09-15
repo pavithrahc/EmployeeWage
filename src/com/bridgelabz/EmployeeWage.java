@@ -90,7 +90,7 @@ public class EmployeeWage {
 					employeehrs = 0;
 				}
 				totalemphrs += employeehrs;
-				System.out.println("Emp hrs for day " + totalworkdays + " is: " + employeehrs);
+				System.out.println("Emp hrs for day. " + totalworkdays + " is: " + employeehrs);
 			}
 			return totalemphrs * c.empRatePerHour;
 		}
